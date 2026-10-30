@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Panel de Control del Dueño"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Sección del Nivel de Comida -->
+    <TextView
+        android:id="@+id/tvComidaPanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nivel: --%"
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Línea / Barra de Progreso Visual del Nivel de Comida -->
+    <ProgressBar
+        android:id="@+id/pbNivelComida"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:max="100"
+        android:progress="0"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Estado de Presencia -->
+    <TextView
+        android:id="@+id/tvPresenciaPanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mascota: Desconocido"
+        android:textSize="16sp"
+        android:layout_marginBottom="32dp" />
+
+    <!-- Botón Principal: Dispensar Ración -->
+    <Button
+        android:id="@+id/btnDispensar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DISPENSAR RACIÓN"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Botón Cancelar Proceso -->
+    <Button
+        android:id="@+id/btnCancelar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CANCELAR PROCESO"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Botón Regresar -->
+    <Button
+        android:id="@+id/btnRegresar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="REGRESAR"
+        style="?attr/borderlessButtonStyle" />
+
+</LinearLayout>

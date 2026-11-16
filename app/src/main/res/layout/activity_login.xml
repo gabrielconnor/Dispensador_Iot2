@@ -36,7 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="INGRESAR"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="12dp" />
 
     <!-- Botón Registrar Nuevo Usuario -->
     <Button
@@ -44,24 +44,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="REGISTRAR NUEVO USUARIO"
-        style="?attr/materialButtonOutlinedStyle"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="12dp" />
 
-    <!-- Botón Cancelar Proceso -->
+    <!-- Botón Cancelar Proceso (ahora con rectángulo sólido) -->
     <Button
         android:id="@+id/btnCancelar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="CANCELAR PROCESO"
-        style="?attr/borderlessButtonStyle"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="12dp" />
 
-    <!-- Botón Regresar -->
+    <!-- Botón Regresar (ahora con rectángulo sólido) -->
     <Button
         android:id="@+id/btnRegresar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="REGRESAR"
-        style="?attr/borderlessButtonStyle" />
+        android:text="REGRESAR" />
 
 </LinearLayout>

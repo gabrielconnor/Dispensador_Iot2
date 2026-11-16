@@ -1,17 +1,17 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.gms.google.services)
-    alias(libs.plugins.google.firebase.crashlytics)
 }
 
 android {
     namespace = "com.example.dispensador_iot"
-    compileSdk = 34
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.example.dispensador_iot"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 37
         versionCode = 1
         versionName = "1.0"
 
@@ -23,7 +23,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -39,14 +39,25 @@ android {
     }
 }
 
+kotlin {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
+    }
+}
+
 dependencies {
-    implementation("androidx.core:core-ktx:1.12.0")
+    implementation(libs.androidx.core.ktx)
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation(libs.firebase.crashlytics)
 
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    // Firebase Authentication
+    implementation(libs.firebase.auth)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
+
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }

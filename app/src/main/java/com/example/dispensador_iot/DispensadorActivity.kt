@@ -84,7 +84,15 @@ class DispensadorActivity : AppCompatActivity() {
     }
 
     fun recibirComando(mensaje: String) {
-        if (mensaje.trim() == "CMD;dispensar;START") {
+        val partes = mensaje.trim().split(";")
+        if (partes.size == 3 && partes[0] == "CMD" && partes[1] == "dispensar") {
+            // Si llega un número (ej. 50), lo descuenta; si llega "START", descuenta 15% por defecto
+            val cantidadADispensar = partes[2].toIntOrNull() ?: 15
+            nivelComida = (nivelComida - cantidadADispensar).coerceAtLeast(0)
+
+            binding.sbComida.progress = nivelComida
+            binding.tvNivelComida.text = "Nivel de Comida: $nivelComida%"
+
             dispensarRacion()
         }
     }

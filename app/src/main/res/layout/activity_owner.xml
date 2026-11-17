@@ -14,7 +14,7 @@
         android:textStyle="bold"
         android:layout_marginBottom="24dp" />
 
-    <!-- Sección del Nivel de Comida -->
+    <!-- Nivel actual recibido desde el Dispensador -->
     <TextView
         android:id="@+id/tvComidaPanel"
         android:layout_width="wrap_content"
@@ -23,7 +23,6 @@
         android:textSize="18sp"
         android:layout_marginBottom="8dp" />
 
-    <!-- Línea / Barra de Progreso Visual del Nivel de Comida -->
     <ProgressBar
         android:id="@+id/pbNivelComida"
         style="?android:attr/progressBarStyleHorizontal"
@@ -33,14 +32,32 @@
         android:progress="0"
         android:layout_marginBottom="16dp" />
 
-    <!-- Estado de Presencia -->
+    <!-- Estado de presencia de la mascota -->
     <TextView
         android:id="@+id/tvPresenciaPanel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Mascota: Desconocido"
         android:textSize="16sp"
-        android:layout_marginBottom="32dp" />
+        android:layout_marginBottom="24dp" />
+
+    <!-- NUEVO: Selector para aumentar/regular la dispensación -->
+    <TextView
+        android:id="@+id/tvCantidadDispensar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cantidad a dispensar: 25%"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <SeekBar
+        android:id="@+id/sbCantidadDispensar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="100"
+        android:progress="25"
+        android:layout_marginBottom="24dp" />
 
     <!-- Botón Principal: Dispensar Ración -->
     <Button
@@ -56,15 +73,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="CANCELAR PROCESO"
-        style="?attr/materialButtonOutlinedStyle"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="12dp" />
 
     <!-- Botón Regresar -->
     <Button
         android:id="@+id/btnRegresar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="REGRESAR"
-        style="?attr/borderlessButtonStyle" />
+        android:text="REGRESAR" />
 
 </LinearLayout>

@@ -6,6 +6,17 @@
     android:gravity="center"
     android:padding="24dp">
 
+    <!-- Indicador de estado de conexión Bluetooth (Criterio 1) -->
+    <TextView
+        android:id="@+id/tvEstadoConexion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Estado: DESCONECTADO"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="#D32F2F"
+        android:layout_marginBottom="8dp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,15 +30,15 @@
         android:id="@+id/tvComidaPanel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nivel: --%"
+        android:text="Nivel: 0%"
         android:textSize="18sp"
         android:layout_marginBottom="8dp" />
 
-    <ProgressBar
-        android:id="@+id/pbNivelComida"
-        style="?android:attr/progressBarStyleHorizontal"
+    <!-- Línea con el punto/círculo deslizable -->
+    <SeekBar
+        android:id="@+id/sbNivelComida"
         android:layout_width="match_parent"
-        android:layout_height="24dp"
+        android:layout_height="wrap_content"
         android:max="100"
         android:progress="0"
         android:layout_marginBottom="16dp" />
@@ -41,7 +52,7 @@
         android:textSize="16sp"
         android:layout_marginBottom="24dp" />
 
-    <!-- NUEVO: Selector para aumentar/regular la dispensación -->
+    <!-- Selector para aumentar/regular la dispensación -->
     <TextView
         android:id="@+id/tvCantidadDispensar"
         android:layout_width="wrap_content"

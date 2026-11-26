@@ -1,5 +1,8 @@
 package com.example.dispensador_iot
 
+import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothManager as AndroidBtManager
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -14,11 +17,24 @@ class DispensadorActivity : AppCompatActivity() {
     private val handler = Handler(Looper.getMainLooper())
     private var nivelComida = 39
     private var mascotaPresente = true
+    private var bluetoothAdapter: BluetoothAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDispenserBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        BluetoothManager.inicializar(this)
+        val systemBtManager = getSystemService(Context.BLUETOOTH_SERVICE) as AndroidBtManager
+        bluetoothAdapter = systemBtManager.adapter
+
+        BluetoothManager.onMensajeRecibido = { linea ->
+            recibirComando(linea)
+        }
+
+        if (bluetoothAdapter != null && bluetoothAdapter!!.isEnabled) {
+            BluetoothManager.iniciarServidor(bluetoothAdapter!!)
+        }
 
         binding.sbComida.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -45,6 +61,7 @@ class DispensadorActivity : AppCompatActivity() {
 
         // Acciones del botón Regresar
         binding.btnRegresar.setOnClickListener {
+            BluetoothManager.detener()
             finish()
         }
 
@@ -84,10 +101,10 @@ class DispensadorActivity : AppCompatActivity() {
     }
 
     fun recibirComando(mensaje: String) {
-        val partes = mensaje.trim().split(";")
-        if (partes.size == 3 && partes[0] == "CMD" && partes[1] == "dispensar") {
-            // Si llega un número (ej. 50), lo descuenta; si llega "START", descuenta 15% por defecto
-            val cantidadADispensar = partes[2].toIntOrNull() ?: 15
+        val datos = ProtocoloIoT.validarYParsear(mensaje) ?: return
+        val (tipo, clave, valor) = datos
+        if (tipo == "CMD" && clave == "dispensar") {
+            val cantidadADispensar = valor.toIntOrNull() ?: 15
             nivelComida = (nivelComida - cantidadADispensar).coerceAtLeast(0)
 
             binding.sbComida.progress = nivelComida
@@ -95,5 +112,10 @@ class DispensadorActivity : AppCompatActivity() {
 
             dispensarRacion()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        BluetoothManager.detener()
     }
 }

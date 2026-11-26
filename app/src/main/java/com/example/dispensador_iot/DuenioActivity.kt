@@ -63,6 +63,10 @@ class DuenioActivity : AppCompatActivity() {
             procesarMensajeEntrante(linea)
         }
 
+        // Inicializar indicador de nivel predeterminado para que no inicie en 0%
+        binding.tvComidaPanel.text = "Nivel: 50%"
+        binding.sbNivelComida.progress = 50
+
         // 2. Controles UI
         binding.sbCantidadDispensar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
